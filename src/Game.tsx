@@ -7,6 +7,9 @@ interface GameState {
 }
 
 export class Game extends React.Component<{}, GameState> {
+    static PLAYER1 = "X";
+    static PLAYER2 = "X";
+
     constructor(props: {}) {
         super(props);
         this.state = {
@@ -16,10 +19,13 @@ export class Game extends React.Component<{}, GameState> {
     }
 
     static calculateWinner(squares: string[]): string {
-        return "X";
+        // return null
+        // return Game.PLAYER2
+        return Game.PLAYER1;
     }
 
     static isTie(squares: string[]): boolean {
+        // return true
         return false;
     }
 
@@ -30,7 +36,7 @@ export class Game extends React.Component<{}, GameState> {
             return;
         }
 
-        squares[idx] = this.state.xIsNext ? "X" : "O";
+        squares[idx] = this.state.xIsNext ? Game.PLAYER1 : Game.PLAYER2;
 
         this.setState({
             squares: squares,
@@ -51,7 +57,7 @@ export class Game extends React.Component<{}, GameState> {
             if (Game.isTie(squares)) {
                 status = "It's a tie!";
             } else {
-                status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+                status = "Next player: " + (this.state.xIsNext ? Game.PLAYER1 : Game.PLAYER2);
             }
         }
 
