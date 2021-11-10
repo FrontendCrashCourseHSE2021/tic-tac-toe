@@ -1,40 +1,60 @@
 import React from "react";
 import {Square} from "./Square";
+import {SquareValue} from "./Game";
 
+/**
+ * Тип входных данных для компоненты "Игровая доска"
+ */
 interface BoardProps {
-    squares: any[];
+    /**
+     * Сама доска в виде списка.
+     */
+    squares: SquareValue[];
+
+    /**
+     * Обработчик нажатия на элемент доски
+     * @param idx Индекс на доске.
+     */
     onClick: (idx: number) => void;
 }
 
-export class Board extends React.Component<BoardProps, {}> {
-    renderSquare(i: number) {
+/**
+ * Компонента "Игровая доска"
+ * @param props Входные данные
+ * @constructor
+ */
+export function Board(props: BoardProps) {
+    /**
+     * Функция, которая создаёт вёрстку для отдельной ячейки на доске
+     * @param i номер ячейки.
+     */
+    function renderSquare(i: number) {
         return (
             <Square
-                value={this.props.squares[i]}
-                onClick={() => this.props.onClick(i)}
+                value={props.squares[i]}
+                onClick={() => props.onClick(i)}
             />
         );
     }
 
-    render() {
-        return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+    // Рисуем все 9 ячеек
+    return (
+        <div>
+            <div className="board-row">
+                {renderSquare(0)}
+                {renderSquare(1)}
+                {renderSquare(2)}
             </div>
-        );
-    }
+            <div className="board-row">
+                {renderSquare(3)}
+                {renderSquare(4)}
+                {renderSquare(5)}
+            </div>
+            <div className="board-row">
+                {renderSquare(6)}
+                {renderSquare(7)}
+                {renderSquare(8)}
+            </div>
+        </div>
+    );
 }

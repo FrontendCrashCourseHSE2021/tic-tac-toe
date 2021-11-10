@@ -1,7 +1,8 @@
 import React from 'react'
 import {mount, ReactWrapper, shallow} from 'enzyme'
-import {Game} from "./Game";
+import {Game, SquareValue} from "./Game";
 import each from "jest-each";
+import {Board} from "./Board";
 
 class TestCase {
     constructor(public order: number[]) {
@@ -32,9 +33,9 @@ describe('normal gameplay', () => {
 
             const winner = wrapper.find('div.game-info').children().first().text();
 
-            let game: Game = wrapper.instance() as Game;
+            let board = wrapper.find(Board);
 
-            let squares = game.state.squares;
+            let squares = board.prop("squares");
 
             let realWinner = calculateWinner(squares);
 
@@ -81,7 +82,7 @@ function generateTestCases(): TestCase[] {
     return cases;
 }
 
-function calculateWinner(squares: string[]) {
+function calculateWinner(squares: SquareValue[]) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
