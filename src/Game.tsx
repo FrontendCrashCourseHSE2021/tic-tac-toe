@@ -45,8 +45,34 @@ export function Game() {
     function calculateWinner(squares: SquareValue[]): SquareValue {
         // return PLAYER2;
         // return PLAYER1;
-        return null;
-    }
+        // horiz 1 + diag
+        if (squares[0] === PLAYER1 && squares[1] === PLAYER1 && squares[2] === PLAYER1
+            || squares[3] === PLAYER1 && squares[4] === PLAYER1 && squares[5] === PLAYER1
+            || squares[6] === PLAYER1 && squares[7] === PLAYER1 && squares[8] === PLAYER1
+            || squares[0] === PLAYER1 && squares[4] === PLAYER1 && squares[8] === PLAYER1
+            || squares[2] === PLAYER1 && squares[4] === PLAYER1 && squares[6] === PLAYER1) {
+            return PLAYER1;
+            //    vertical 1
+        } else if (squares[0] === PLAYER1 && squares[3] === PLAYER1 && squares[6] === PLAYER1
+            || squares[1] === PLAYER1 && squares[4] === PLAYER1 && squares[7] === PLAYER1
+            || squares[2] === PLAYER1 && squares[5] === PLAYER1 && squares[8] === PLAYER1) {
+            return PLAYER1;
+            //    horiz 2 + diag
+        } else if (squares[0] === PLAYER2 && squares[1] === PLAYER2 && squares[2] === PLAYER2
+            || squares[3] === PLAYER2 && squares[4] === PLAYER2 && squares[5] === PLAYER2
+            || squares[6] === PLAYER2 && squares[7] === PLAYER2 && squares[8] === PLAYER2
+            || squares[0] === PLAYER2 && squares[4] === PLAYER2 && squares[8] === PLAYER2
+            || squares[2] === PLAYER2 && squares[4] === PLAYER2 && squares[6] === PLAYER2) {
+            return PLAYER2;
+            //    vertical 2
+        } else if(squares[0] === PLAYER2 && squares[3] === PLAYER2 && squares[6] === PLAYER2
+            || squares[1] === PLAYER2 && squares[4] === PLAYER2 && squares[7] === PLAYER2
+            || squares[2] === PLAYER2 && squares[5] === PLAYER2 && squares[8] === PLAYER2) {
+            return PLAYER2;
+        } else {
+            return null
+        }
+    };
 
     /**
      * Вычисляет ничья в игре или нет.
@@ -54,6 +80,18 @@ export function Game() {
      * @return true если ничья, false если не ничья.
      */
     function isTie(squares: SquareValue[]): boolean {
+        if ((squares[0] === PLAYER1 || squares[0] === PLAYER2) &&
+            (squares[1] === PLAYER1 || squares[1] === PLAYER2) &&
+            (squares[2] === PLAYER1 || squares[2] === PLAYER2) &&
+            (squares[3] === PLAYER1 || squares[3] === PLAYER2) &&
+            (squares[4] === PLAYER1 || squares[4] === PLAYER2) &&
+            (squares[5] === PLAYER1 || squares[5] === PLAYER2) &&
+            (squares[6] === PLAYER1 || squares[6] === PLAYER2) &&
+            (squares[7] === PLAYER1 || squares[7] === PLAYER2) &&
+            (squares[8] === PLAYER1 || squares[8] === PLAYER2))
+        {
+            return true;
+        }
         // return true;
         return false;
     }
@@ -66,9 +104,11 @@ export function Game() {
         const squares = state.squares;
 
         if (calculateWinner(squares) || squares[idx] != null) {
-            // если есть победитель или на эту ячейку уже нажимали не делаем ничего
+        // если есть победитель или на эту ячейку уже нажимали не делаем ничего
             return;
         }
+
+
 
         // Заполняем массив. Если сейчас ходят крестики, то кладём крестик и наоборот.
         squares[idx] = state.xIsNext ? PLAYER1 : PLAYER2;
