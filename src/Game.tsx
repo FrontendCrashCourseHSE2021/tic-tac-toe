@@ -46,33 +46,33 @@ export function Game() {
         // return PLAYER2;
         // return PLAYER1;
         // horiz 1 + diag
-        if (squares[0] === PLAYER1 && squares[1] === PLAYER1 && squares[2] === PLAYER1
-            || squares[3] === PLAYER1 && squares[4] === PLAYER1 && squares[5] === PLAYER1
-            || squares[6] === PLAYER1 && squares[7] === PLAYER1 && squares[8] === PLAYER1
-            || squares[0] === PLAYER1 && squares[4] === PLAYER1 && squares[8] === PLAYER1
-            || squares[2] === PLAYER1 && squares[4] === PLAYER1 && squares[6] === PLAYER1) {
+        if ((squares[0] === PLAYER1 && squares[1] === PLAYER1 && squares[2] === PLAYER1)
+            || (squares[3] === PLAYER1 && squares[4] === PLAYER1 && squares[5] === PLAYER1)
+            || (squares[6] === PLAYER1 && squares[7] === PLAYER1 && squares[8] === PLAYER1)
+            || (squares[0] === PLAYER1 && squares[4] === PLAYER1 && squares[8] === PLAYER1)
+            || (squares[2] === PLAYER1 && squares[4] === PLAYER1 && squares[6] === PLAYER1)) {
             return PLAYER1;
             //    vertical 1
-        } else if (squares[0] === PLAYER1 && squares[3] === PLAYER1 && squares[6] === PLAYER1
-            || squares[1] === PLAYER1 && squares[4] === PLAYER1 && squares[7] === PLAYER1
-            || squares[2] === PLAYER1 && squares[5] === PLAYER1 && squares[8] === PLAYER1) {
+        } else if ((squares[0] === PLAYER1 && squares[3] === PLAYER1 && squares[6] === PLAYER1)
+            || (squares[1] === PLAYER1 && squares[4] === PLAYER1 && squares[7] === PLAYER1)
+            || (squares[2] === PLAYER1 && squares[5] === PLAYER1 && squares[8] === PLAYER1)) {
             return PLAYER1;
             //    horiz 2 + diag
-        } else if (squares[0] === PLAYER2 && squares[1] === PLAYER2 && squares[2] === PLAYER2
-            || squares[3] === PLAYER2 && squares[4] === PLAYER2 && squares[5] === PLAYER2
-            || squares[6] === PLAYER2 && squares[7] === PLAYER2 && squares[8] === PLAYER2
-            || squares[0] === PLAYER2 && squares[4] === PLAYER2 && squares[8] === PLAYER2
-            || squares[2] === PLAYER2 && squares[4] === PLAYER2 && squares[6] === PLAYER2) {
+        } else if ((squares[0] === PLAYER2 && squares[1] === PLAYER2 && squares[2] === PLAYER2)
+            || (squares[3] === PLAYER2 && squares[4] === PLAYER2 && squares[5] === PLAYER2)
+            || (squares[6] === PLAYER2 && squares[7] === PLAYER2 && squares[8] === PLAYER2)
+            || (squares[0] === PLAYER2 && squares[4] === PLAYER2 && squares[8] === PLAYER2)
+            || (squares[2] === PLAYER2 && squares[4] === PLAYER2 && squares[6] === PLAYER2)) {
             return PLAYER2;
             //    vertical 2
-        } else if(squares[0] === PLAYER2 && squares[3] === PLAYER2 && squares[6] === PLAYER2
-            || squares[1] === PLAYER2 && squares[4] === PLAYER2 && squares[7] === PLAYER2
-            || squares[2] === PLAYER2 && squares[5] === PLAYER2 && squares[8] === PLAYER2) {
+        } else if((squares[0] === PLAYER2 && squares[3] === PLAYER2 && squares[6] === PLAYER2)
+            || (squares[1] === PLAYER2 && squares[4] === PLAYER2 && squares[7] === PLAYER2)
+            || (squares[2] === PLAYER2 && squares[5] === PLAYER2 && squares[8] === PLAYER2)) {
             return PLAYER2;
         } else {
             return null
         }
-    };
+    }
 
     /**
      * Вычисляет ничья в игре или нет.
