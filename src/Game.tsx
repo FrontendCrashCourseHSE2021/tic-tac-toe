@@ -43,8 +43,32 @@ export function Game() {
      * или null -- пока нет победителя (или уже не будет, если это ничья).
      */
     function calculateWinner(squares: SquareValue[]): SquareValue {
-        // return PLAYER2;
-        // return PLAYER1;
+        const arrayX = [];
+        const arrayO = []
+        for (let i = 0; i < squares.length; i += 1){
+            if (squares[i] === 'X') {
+                arrayX.push(i);
+            }else if (squares[i] === 'O'){
+                arrayO.push(i);
+            }
+        }
+        let winComb = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+        for (let i of winComb){
+            let winX = 0;
+            let winO = 0;
+            for(let a of i){
+                if(arrayX.includes(a)){
+                    winX += 1;
+                }else if(arrayO.includes(a)){
+                    winO += 1;
+                }
+            }
+            if(winX === 3){
+                return PLAYER1;
+            }else if(winO === 3){
+                return PLAYER2;
+            }
+        }
         return null;
     }
 
@@ -54,8 +78,8 @@ export function Game() {
      * @return true если ничья, false если не ничья.
      */
     function isTie(squares: SquareValue[]): boolean {
-        // return true;
-        return false;
+        return !squares.includes(null);
+
     }
 
     /**
