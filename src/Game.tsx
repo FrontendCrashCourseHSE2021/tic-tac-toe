@@ -68,10 +68,12 @@ export function Game() {
      * @return true если ничья, false если не ничья.
      */
     function isTie(squares: SquareValue[]): boolean {
-        //return true;
-        const winner = calculateWinner(squares);
-        return winner === null && !squares.filter((square) => !square).length;
-
+        // return true;
+        const calWin = calculateWinner(squares);
+        if (calWin === null && !squares.filter((square) => !square).length){
+            return true;
+        }
+        return false;
     }
 
     /**
