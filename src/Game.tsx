@@ -68,14 +68,12 @@ export function Game() {
      * @return true если ничья, false если не ничья.
      */
     function isTie(squares: SquareValue[]): boolean {
-        // return true;
-        for (let i = 0; i < squares.length; i++) {
-            if (squares[i] == null){
-                return false;
-            }
-        }
-        return true;
+        //return true;
+        const winner = calculateWinner(squares);
+        return winner === null && !squares.filter((square) => !square).length;
+
     }
+
     /**
      * Обработчик нажатия на кнопку.
      * @param idx Индекс ячейки игрового поля, на которую нажали.
