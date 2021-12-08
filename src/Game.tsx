@@ -54,14 +54,11 @@ export function Game() {
             [2,4,6]
         ];
         for (let i = 0; i < possibles.length; i++) {
-            const [a,b,c] = possibles[i];
+            const [a, b, c] = possibles[i];
             if (squares[a] === squares[b] && squares[a] === squares[c]) {
                 return squares[a];
             }
         }
-
-        // return PLAYER2;
-        // return PLAYER1;
         return null;
     }
 
@@ -72,7 +69,6 @@ export function Game() {
      */
     function isTie(squares: SquareValue[]): boolean {
         // return true;
-        //return false;
         for (let i = 0; i < squares.length; i++) {
             if (squares[i] == null){
                 return false;
@@ -80,7 +76,6 @@ export function Game() {
         }
         return true;
     }
-
     /**
      * Обработчик нажатия на кнопку.
      * @param idx Индекс ячейки игрового поля, на которую нажали.
