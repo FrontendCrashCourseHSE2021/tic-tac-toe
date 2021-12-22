@@ -43,8 +43,24 @@ export function Game() {
      * или null -- пока нет победителя (или уже не будет, если это ничья).
      */
     function calculateWinner(squares: SquareValue[]): SquareValue {
-        // return PLAYER2;
-        // return PLAYER1;
+
+        for (let i = 1; i < squares.length; i += 3) {
+            if (squares[i-1] === squares[i] && squares[i] === squares[i+1]) {
+                return squares[i]
+            }
+        }
+        for (let i = 0; i < 3; i++) {
+            if (squares[i+3] === squares[i] && squares[i] === squares[i+6]) {
+                return squares[i]
+            }
+        }
+        if (squares[0] === squares[4] && squares[4] === squares[8]) {
+            return squares[0]
+        }
+        if (squares[2] === squares[4] && squares[4] === squares[6]) {
+            return squares[2]
+        }
+
         return null;
     }
 
@@ -54,8 +70,9 @@ export function Game() {
      * @return true если ничья, false если не ничья.
      */
     function isTie(squares: SquareValue[]): boolean {
-        // return true;
-        return false;
+
+        return squares.filter(x => x !== null).length === squares.length;
+
     }
 
     /**
