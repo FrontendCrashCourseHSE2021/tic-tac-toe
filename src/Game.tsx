@@ -32,8 +32,9 @@ interface GameState {
 export function Game() {
     // получаем состояние игры и функцию для его изменения
     const [state, changeState] = useState<GameState>({
+        // заполняем массив null
         squares: Array(9).fill(null) as Array<SquareValue>,
-        xIsNext: true
+        xIsNext: true  // первый Х
     });
 
     /**
@@ -43,9 +44,25 @@ export function Game() {
      * или null -- пока нет победителя (или уже не будет, если это ничья).
      */
     function calculateWinner(squares: SquareValue[]): SquareValue {
-        // return PLAYER2;
-        // return PLAYER1;
-        return null;
+        // возможные варианты победы
+        const opts = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ] ;
+
+        for (let i = 0; i < opts.length; i++) {
+            const [a, b, c] = opts[i] ;
+            if (squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a] ;  // return PLAYER2 or return PLAYER1;
+            }
+        }
+        return null ;
     }
 
     /**
@@ -55,7 +72,9 @@ export function Game() {
      */
     function isTie(squares: SquareValue[]): boolean {
         // return true;
-        return false;
+        const winner = calculateWinner(squares) ;
+
+        return winner == null && !squares.includes(null) ;
     }
 
     /**

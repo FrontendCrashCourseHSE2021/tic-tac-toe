@@ -18,6 +18,7 @@ interface SquareProps {
 
 export function Square(props: SquareProps) {
     return (
+        // выводим что лежит в ячейке
         <button className="square" onClick={props.onClick}>
             {props.value}
         </button>

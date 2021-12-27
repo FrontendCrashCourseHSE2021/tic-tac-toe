@@ -31,8 +31,8 @@ export function Board(props: BoardProps) {
     function renderSquare(i: number) {
         return (
             <Square
-                value={props.squares[i]}
-                onClick={() => props.onClick(i)}
+                value={props.squares[i]}  // из массива доски
+                onClick={() => props.onClick(i)}  // вызывается функция
             />
         );
     }
